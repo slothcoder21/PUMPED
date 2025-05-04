@@ -1,0 +1,241 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../app/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(cuid())
+  name      String?
+  email     String   @unique
+  password  String
+  image     String?
+  height    Float?
+  weight    Float?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  workouts         Workout[]
+  goals            Goal[]
+  achievements     Achievement[]
+  weightHistory    WeightHistory[]
+  bodyMeasurements BodyMeasurement[]
+  aiWorkouts       AIWorkout[]
+  userSettings     UserSettings?
+  progressStats    ProgressStat[]
+  workoutStreak    WorkoutStreak?
+}
+
+model Workout {
+  id          String   @id @default(cuid())
+  name        String
+  date        DateTime @default(now())
+  duration    Int? // in minutes
+  notes       String?
+  isCompleted Boolean  @default(false)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  userId    String
+  user      User              @relation(fields: [userId], references: [id], onDelete: Cascade)
+  exercises WorkoutExercise[]
+  category  String? // e.g., "strength", "cardio", "flexibility"
+}
+
+model Exercise {
+  id           String   @id @default(cuid())
+  name         String
+  description  String?
+  muscleGroup  String
+  equipment    String?
+  instructions String?
+  videoUrl     String?
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  workoutExercises   WorkoutExercise[]
+  aiWorkoutExercises AIWorkoutExercise[]
+}
+
+model WorkoutExercise {
+  id        String   @id @default(cuid())
+  sets      Int
+  reps      Int
+  weight    Float?
+  duration  Int? // in seconds
+  restTime  Int? // in seconds
+  notes     String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  workoutId  String
+  workout    Workout  @relation(fields: [workoutId], references: [id], onDelete: Cascade)
+  exerciseId String
+  exercise   Exercise @relation(fields: [exerciseId], references: [id])
+
+  // For tracking progress
+  personalBest Boolean @default(false)
+}
+
+model Goal {
+  id           String    @id @default(cuid())
+  name         String
+  description  String?
+  targetDate   DateTime?
+  isCompleted  Boolean   @default(false)
+  type         GoalType
+  metric       String?
+  targetValue  Float?
+  currentValue Float?
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+
+  userId String
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+enum GoalType {
+  WEIGHT
+  STRENGTH
+  CARDIO
+  HABIT
+  CUSTOM
+}
+
+model Achievement {
+  id          String    @id @default(cuid())
+  name        String
+  description String
+  image       String?
+  unlockedAt  DateTime?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  userId String
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+// New models to support all app features
+
+model WeightHistory {
+  id     String   @id @default(cuid())
+  weight Float
+  date   DateTime @default(now())
+  notes  String?
+
+  userId String
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model BodyMeasurement {
+  id    String          @id @default(cuid())
+  date  DateTime        @default(now())
+  type  MeasurementType
+  value Float
+  notes String?
+
+  userId String
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+enum MeasurementType {
+  CHEST
+  WAIST
+  HIPS
+  BICEP
+  THIGH
+  CALF
+  SHOULDERS
+  NECK
+  BODY_FAT_PERCENTAGE
+  OTHER
+}
+
+model AIWorkout {
+  id           String   @id @default(cuid())
+  name         String
+  description  String?
+  fitnessLevel String // beginner, intermediate, advanced
+  goal         String // strength, hypertrophy, endurance, etc.
+  duration     Int // in minutes
+  equipment    String
+  focusArea    String
+  warmup       Json? // Array of warmup activities
+  cooldown     Json? // Array of cooldown activities
+  createdAt    DateTime @default(now())
+
+  userId    String
+  user      User                @relation(fields: [userId], references: [id])
+  exercises AIWorkoutExercise[]
+}
+
+model AIWorkoutExercise {
+  id          String  @id @default(cuid())
+  name        String
+  sets        Int
+  reps        Int?
+  duration    Int? // in seconds
+  rest        Int? // in seconds
+  instruction String?
+  order       Int // to maintain exercise order
+
+  aiWorkoutId String
+  aiWorkout   AIWorkout @relation(fields: [aiWorkoutId], references: [id], onDelete: Cascade)
+  exerciseId  String?
+  exercise    Exercise? @relation(fields: [exerciseId], references: [id])
+}
+
+model UserSettings {
+  id           String @id @default(cuid())
+  theme        String @default("light") // light, dark
+  units        String @default("metric") // metric, imperial
+  language     String @default("english")
+  privacyLevel String @default("friends") // public, friends, private
+
+  // Notification preferences
+  workoutReminders  Boolean @default(true)
+  progressUpdates   Boolean @default(true)
+  achievementAlerts Boolean @default(true)
+  tipNotifications  Boolean @default(false)
+
+  userId String @unique
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model ProgressStat {
+  id       String   @id @default(cuid())
+  date     DateTime @default(now())
+  statType StatType
+  value    Float
+
+  userId String
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+enum StatType {
+  WEIGHT
+  STRENGTH
+  CARDIO
+  WORKOUT_FREQUENCY
+  BODY_MEASUREMENT
+}
+
+model WorkoutStreak {
+  id              String    @id @default(cuid())
+  currentStreak   Int       @default(0)
+  longestStreak   Int       @default(0)
+  lastWorkoutDate DateTime?
+
+  userId String @unique
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
