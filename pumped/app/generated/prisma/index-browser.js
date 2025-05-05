@@ -139,6 +139,8 @@ exports.Prisma.WorkoutScalarFieldEnum = {
   duration: 'duration',
   notes: 'notes',
   isCompleted: 'isCompleted',
+  status: 'status',
+  startedAt: 'startedAt',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
   userId: 'userId',
@@ -297,6 +299,12 @@ exports.Prisma.JsonNullValueFilter = {
   JsonNull: Prisma.JsonNull,
   AnyNull: Prisma.AnyNull
 };
+exports.WorkoutStatus = exports.$Enums.WorkoutStatus = {
+  PLANNED: 'PLANNED',
+  IN_PROGRESS: 'IN_PROGRESS',
+  COMPLETED: 'COMPLETED'
+};
+
 exports.GoalType = exports.$Enums.GoalType = {
   WEIGHT: 'WEIGHT',
   STRENGTH: 'STRENGTH',

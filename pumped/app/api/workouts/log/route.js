@@ -39,7 +39,7 @@ export async function POST(request) {
         notes,
         isCompleted: isCompleted || true,
         userId,
-        category: body.category || 'strength', // Default to strength if not specified
+        category: body.category || 'Strength', // Default to strength if not specified
         // If this is based on an existing workout template, store the reference
         // This would require adding a new field to the schema
         // originalWorkoutId: workoutId, 

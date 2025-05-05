@@ -1,6 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import SvgIcon from './SvgIcon';
 
 export default function GoalProgressCard({ goal, index }) {
   const formatDate = (dateString) => {
@@ -27,7 +28,7 @@ export default function GoalProgressCard({ goal, index }) {
   const getGoalColor = () => {
     switch(goal.type) {
       case 'STRENGTH':
-        return 'from-purple-600/20 to-purple-800/20 border-purple-500/30';
+        return 'from-blue-600/20 to-blue-800/20 border-blue-500/30';
       case 'WEIGHT':
         return 'from-blue-600/20 to-blue-800/20 border-blue-500/30';
       case 'CARDIO':
@@ -41,7 +42,7 @@ export default function GoalProgressCard({ goal, index }) {
   const getProgressColor = () => {
     switch(goal.type) {
       case 'STRENGTH':
-        return 'bg-purple-500';
+        return 'bg-blue-500';
       case 'WEIGHT':
         return 'bg-blue-500';
       case 'CARDIO':
@@ -84,9 +85,10 @@ export default function GoalProgressCard({ goal, index }) {
 
         <div className="flex items-center text-xs text-gray-400">
           <div className="flex items-center">
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-3 w-3 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
-            </svg>
+            <SvgIcon 
+              name="chart" 
+              className="h-3 w-3 mr-1" 
+            />
             <span>
               {goal.type === 'WEIGHT' && goal.targetValue < goal.currentValue
                 ? `${goal.currentValue - goal.targetValue} ${goal.metric || goal.unit} to go`

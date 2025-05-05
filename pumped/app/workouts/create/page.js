@@ -92,10 +92,11 @@ export default function CreateWorkoutPage() {
         weight: '',
         restTime: 60,
         notes: '',
-        // For mock exercises, store the exercise details
-        isMockExercise: isMockExercise,
-        muscleGroup: exercise.muscleGroup,
-        equipment: exercise.equipment
+        // For all exercises, store the exercise details to ensure
+        // they're available when creating mock exercises in the backend
+        muscleGroup: exercise.muscleGroup || 'other',
+        equipment: exercise.equipment || 'other',
+        isMockExercise: isMockExercise
       }
     ]);
   };
@@ -137,7 +138,11 @@ export default function CreateWorkoutPage() {
         reps: exercise.reps || 10,
         weight: exercise.weight || null,
         restTime: exercise.restTime || 60,
-        notes: exercise.notes || ''
+        notes: exercise.notes || '',
+        // Include these fields for mock exercises
+        muscleGroup: exercise.muscleGroup || 'other',
+        equipment: exercise.equipment || 'other',
+        isMockExercise: exercise.isMockExercise
       }));
 
       const response = await fetch('/api/workouts', {
@@ -170,9 +175,9 @@ export default function CreateWorkoutPage() {
   if (status === 'loading') {
     return (
       <DashboardLayout>
-        <div className="flex items-center justify-center min-h-screen">
+        <div className="flex items-center justify-center min-h-screen bg-white">
           <div className="animate-pulse text-center">
-            <p className="text-gray-400">Loading...</p>
+            <p className="text-[#4D8DAA]">Loading...</p>
           </div>
         </div>
       </DashboardLayout>
@@ -181,27 +186,27 @@ export default function CreateWorkoutPage() {
 
   return (
     <DashboardLayout>
-      <div className="container mx-auto px-4 py-8">
+      <div className="container mx-auto px-4 py-8 bg-white">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >
-          <h1 className="text-3xl font-bold mb-8">Create New Workout</h1>
+          <h1 className="text-3xl font-bold mb-8 text-[#305C74]">Create New Workout</h1>
 
           {error && (
-            <div className="bg-gradient-to-r from-red-600/20 to-red-800/20 border border-red-500/30 text-red-100 px-4 py-3 rounded-xl mb-6">
+            <div className="bg-[#F4F8FB] border border-red-400 text-red-700 px-4 py-3 rounded-xl mb-6 shadow-md">
               {error}
             </div>
           )}
 
           <form onSubmit={handleSubmit} className="space-y-8">
-            <div className="bg-gradient-to-r from-gray-800/50 to-gray-900/50 rounded-xl shadow-md p-6 border border-gray-700">
-              <h2 className="text-xl font-semibold mb-4 text-white">Workout Details</h2>
+            <div className="bg-white rounded-xl shadow-lg p-6 border border-[#CDE0EA]">
+              <h2 className="text-xl font-semibold mb-4 text-[#3B728E]">Workout Details</h2>
               
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
-                  <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-1">
+                  <label htmlFor="name" className="block text-sm font-medium text-[#2B4E61] mb-1">
                     Workout Name *
                   </label>
                   <input
@@ -211,13 +216,13 @@ export default function CreateWorkoutPage() {
                     required
                     value={workoutData.name}
                     onChange={handleWorkoutChange}
-                    className="w-full px-4 py-2 bg-gray-800/80 border border-gray-700 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent text-white"
+                    className="w-full px-4 py-2 bg-[#F4F8FB] border border-[#CDE0EA] rounded-lg focus:ring-2 focus:ring-[#4D8DAA] focus:border-transparent text-[#284352]"
                     placeholder="e.g., Monday Upper Body"
                   />
                 </div>
 
                 <div>
-                  <label htmlFor="category" className="block text-sm font-medium text-gray-300 mb-1">
+                  <label htmlFor="category" className="block text-sm font-medium text-[#2B4E61] mb-1">
                     Category
                   </label>
                   <select
@@ -225,7 +230,7 @@ export default function CreateWorkoutPage() {
                     name="category"
                     value={workoutData.category}
                     onChange={handleWorkoutChange}
-                    className="w-full px-4 py-2 bg-gray-800/80 border border-gray-700 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent text-white"
+                    className="w-full px-4 py-2 bg-[#F4F8FB] border border-[#CDE0EA] rounded-lg focus:ring-2 focus:ring-[#4D8DAA] focus:border-transparent text-[#284352]"
                   >
                     <option value="strength">Strength</option>
                     <option value="cardio">Cardio</option>
@@ -235,7 +240,7 @@ export default function CreateWorkoutPage() {
                 </div>
 
                 <div>
-                  <label htmlFor="date" className="block text-sm font-medium text-gray-300 mb-1">
+                  <label htmlFor="date" className="block text-sm font-medium text-[#2B4E61] mb-1">
                     Date
                   </label>
                   <input
@@ -244,12 +249,12 @@ export default function CreateWorkoutPage() {
                     type="date"
                     value={workoutData.date}
                     onChange={handleWorkoutChange}
-                    className="w-full px-4 py-2 bg-gray-800/80 border border-gray-700 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent text-white"
+                    className="w-full px-4 py-2 bg-[#F4F8FB] border border-[#CDE0EA] rounded-lg focus:ring-2 focus:ring-[#4D8DAA] focus:border-transparent text-[#284352]"
                   />
                 </div>
 
                 <div>
-                  <label htmlFor="duration" className="block text-sm font-medium text-gray-300 mb-1">
+                  <label htmlFor="duration" className="block text-sm font-medium text-[#2B4E61] mb-1">
                     Duration (minutes)
                   </label>
                   <input
@@ -260,13 +265,13 @@ export default function CreateWorkoutPage() {
                     max="240"
                     value={workoutData.duration}
                     onChange={handleWorkoutChange}
-                    className="w-full px-4 py-2 bg-gray-800/80 border border-gray-700 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent text-white"
+                    className="w-full px-4 py-2 bg-[#F4F8FB] border border-[#CDE0EA] rounded-lg focus:ring-2 focus:ring-[#4D8DAA] focus:border-transparent text-[#284352]"
                   />
                 </div>
               </div>
 
               <div className="mt-6">
-                <label htmlFor="notes" className="block text-sm font-medium text-gray-300 mb-1">
+                <label htmlFor="notes" className="block text-sm font-medium text-[#2B4E61] mb-1">
                   Notes
                 </label>
                 <textarea
@@ -275,53 +280,53 @@ export default function CreateWorkoutPage() {
                   rows="3"
                   value={workoutData.notes}
                   onChange={handleWorkoutChange}
-                  className="w-full px-4 py-2 bg-gray-800/80 border border-gray-700 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent text-white"
+                  className="w-full px-4 py-2 bg-[#F4F8FB] border border-[#CDE0EA] rounded-lg focus:ring-2 focus:ring-[#4D8DAA] focus:border-transparent text-[#284352]"
                   placeholder="Additional notes about this workout..."
                 ></textarea>
               </div>
             </div>
 
-            <div className="bg-gradient-to-r from-gray-800/50 to-gray-900/50 rounded-xl shadow-md p-6 border border-gray-700">
-              <h2 className="text-xl font-semibold mb-4 text-white">Exercises</h2>
+            <div className="bg-white rounded-xl shadow-lg p-6 border border-[#CDE0EA]">
+              <h2 className="text-xl font-semibold mb-4 text-[#3B728E]">Exercises</h2>
               
               {selectedExercises.length > 0 ? (
                 <div className="mb-6">
-                  <h3 className="text-lg font-medium mb-3 text-white">Selected Exercises</h3>
+                  <h3 className="text-lg font-medium mb-3 text-[#3B728E]">Selected Exercises</h3>
                   <div className="overflow-x-auto">
-                    <table className="min-w-full divide-y divide-gray-700">
-                      <thead className="bg-gray-800/50">
+                    <table className="min-w-full divide-y divide-[#CDE0EA]">
+                      <thead className="bg-[#F4F8FB]">
                         <tr>
-                          <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">
+                          <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-[#2B4E61] uppercase tracking-wider">
                             Exercise
                           </th>
-                          <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">
+                          <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-[#2B4E61] uppercase tracking-wider">
                             Sets
                           </th>
-                          <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">
+                          <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-[#2B4E61] uppercase tracking-wider">
                             Reps
                           </th>
-                          <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">
+                          <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-[#2B4E61] uppercase tracking-wider">
                             Weight
                           </th>
-                          <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">
+                          <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-[#2B4E61] uppercase tracking-wider">
                             Rest
                           </th>
-                          <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">
+                          <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-[#2B4E61] uppercase tracking-wider">
                             Actions
                           </th>
                         </tr>
                       </thead>
-                      <tbody className="bg-gray-800/30 divide-y divide-gray-700">
+                      <tbody className="bg-white divide-y divide-[#CDE0EA]">
                         {selectedExercises.map((exercise, index) => (
                           <tr key={index}>
-                            <td className="px-6 py-4 whitespace-nowrap text-sm text-white">
+                            <td className="px-6 py-4 whitespace-nowrap text-sm text-[#284352]">
                               {exercise.name}
                             </td>
                             <td className="px-6 py-4 whitespace-nowrap">
                               <input
                                 type="number"
                                 min="1"
-                                className="w-16 py-1 px-2 bg-gray-700 border border-gray-600 rounded text-white text-center"
+                                className="w-16 py-1 px-2 bg-[#F4F8FB] border border-[#CDE0EA] rounded text-[#284352] text-center"
                                 value={exercise.sets}
                                 onChange={(e) => handleExerciseChange(index, 'sets', parseInt(e.target.value))}
                               />
@@ -330,7 +335,7 @@ export default function CreateWorkoutPage() {
                               <input
                                 type="number"
                                 min="1"
-                                className="w-16 py-1 px-2 bg-gray-700 border border-gray-600 rounded text-white text-center"
+                                className="w-16 py-1 px-2 bg-[#F4F8FB] border border-[#CDE0EA] rounded text-[#284352] text-center"
                                 value={exercise.reps}
                                 onChange={(e) => handleExerciseChange(index, 'reps', parseInt(e.target.value))}
                               />
@@ -340,7 +345,7 @@ export default function CreateWorkoutPage() {
                                 type="number"
                                 step="0.5"
                                 min="0"
-                                className="w-20 py-1 px-2 bg-gray-700 border border-gray-600 rounded text-white text-center"
+                                className="w-20 py-1 px-2 bg-[#F4F8FB] border border-[#CDE0EA] rounded text-[#284352] text-center"
                                 value={exercise.weight}
                                 onChange={(e) => handleExerciseChange(index, 'weight', e.target.value)}
                                 placeholder="kg/lb"
@@ -351,7 +356,7 @@ export default function CreateWorkoutPage() {
                                 type="number"
                                 min="0"
                                 step="5"
-                                className="w-20 py-1 px-2 bg-gray-700 border border-gray-600 rounded text-white text-center"
+                                className="w-20 py-1 px-2 bg-[#F4F8FB] border border-[#CDE0EA] rounded text-[#284352] text-center"
                                 value={exercise.restTime}
                                 onChange={(e) => handleExerciseChange(index, 'restTime', parseInt(e.target.value))}
                                 placeholder="sec"
@@ -361,7 +366,7 @@ export default function CreateWorkoutPage() {
                               <button
                                 type="button"
                                 onClick={() => handleRemoveExercise(index)}
-                                className="text-red-400 hover:text-red-300"
+                                className="text-[#6FA8C1] hover:text-[#4D8DAA]"
                               >
                                 Remove
                               </button>
@@ -373,21 +378,21 @@ export default function CreateWorkoutPage() {
                   </div>
                 </div>
               ) : (
-                <p className="text-gray-400 mb-4">No exercises added yet. Select from the list below.</p>
+                <p className="text-[#6FA8C1] mb-4">No exercises added yet. Select from the list below.</p>
               )}
               
               <div>
-                <h3 className="text-lg font-medium mb-3 text-white">Available Exercises</h3>
+                <h3 className="text-lg font-medium mb-3 text-[#3B728E]">Available Exercises</h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
                   {exercises.map((exercise) => (
                     <button
                       key={exercise.id}
                       type="button"
                       onClick={() => handleAddExercise(exercise)}
-                      className="flex items-center p-3 border border-gray-700 bg-gray-800/50 hover:bg-gray-700/50 rounded-lg text-left transition-colors"
+                      className="flex items-center p-3 border border-[#CDE0EA] bg-[#F4F8FB] hover:bg-[#E9F0F5] rounded-lg text-left transition-colors shadow-sm"
                     >
-                      <span className="text-sm text-white">{exercise.name}</span>
-                      <span className="ml-2 text-xs bg-purple-600/30 text-purple-300 px-2 py-0.5 rounded">
+                      <span className="text-sm text-[#284352]">{exercise.name}</span>
+                      <span className="ml-2 text-xs bg-[#9EC4D6] text-[#1B2B36] px-2 py-0.5 rounded">
                         {exercise.muscleGroup}
                       </span>
                     </button>
@@ -400,7 +405,7 @@ export default function CreateWorkoutPage() {
               <button
                 type="submit"
                 disabled={isLoading}
-                className="px-6 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors"
+                className="px-6 py-2 bg-[#4D8DAA] text-white rounded-lg hover:bg-[#3B728E] transition-colors shadow-md"
               >
                 {isLoading ? 'Creating...' : 'Create Workout'}
               </button>

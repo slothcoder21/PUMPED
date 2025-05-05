@@ -255,7 +255,7 @@ export default function StartWorkout() {
                   <div className="flex justify-between">
                     <p className="text-gray-400">{workout.exercises.length} exercises</p>
                     {workout.isUserWorkout && (
-                      <span className="text-xs bg-purple-600 px-2 py-1 rounded-full">Saved</span>
+                      <span className="text-xs bg-blue-600 px-2 py-1 rounded-full text-white">Saved</span>
                     )}
                   </div>
                 </div>
@@ -338,7 +338,7 @@ export default function StartWorkout() {
                     />
                     <button 
                       onClick={() => handleAddSet(index)}
-                      className="bg-purple-600 p-2 rounded"
+                      className="bg-blue-600 p-2 rounded text-white"
                     >
                       <PlusIcon className="h-5 w-5" />
                     </button>
@@ -357,7 +357,7 @@ export default function StartWorkout() {
               <button 
                 onClick={handleCompleteWorkout}
                 disabled={isSaving}
-                className="bg-purple-600 px-6 py-2 rounded-lg font-semibold disabled:opacity-50"
+                className="bg-blue-600 px-6 py-2 rounded-lg font-semibold disabled:opacity-50 text-white"
               >
                 {isSaving ? 'Saving...' : 'Complete Workout'}
               </button>

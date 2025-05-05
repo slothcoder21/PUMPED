@@ -48,7 +48,7 @@ export async function POST(request) {
     
     const { name, date, duration, notes, category, exercises } = body;
 
-    console.log('Creating workout with exercises:', exercises);
+    console.log('Creating workout with exercises:', exercises ? exercises.length : 0, 'exercises provided');
 
     // First, create the basic workout
     const workout = await prisma.workout.create({
@@ -96,6 +96,23 @@ export async function POST(request) {
               console.error('Error checking exercise:', exErr);
               // Continue without connecting to an exercise
             }
+          } else if (exerciseId && exerciseId.startsWith('mock-')) {
+            // For mock exercises, we need to create a real exercise first
+            try {
+              // Create a real exercise from the mock data
+              const newExercise = await prisma.exercise.create({
+                data: {
+                  name: name,
+                  muscleGroup: exercise.muscleGroup || 'other',
+                  equipment: exercise.equipment || 'other',
+                }
+              });
+              
+              // Now use the new exercise ID
+              exerciseData.exerciseId = newExercise.id;
+            } catch (mockError) {
+              console.error('Error creating exercise from mock data:', mockError);
+            }
           }
 
           // Create the workout exercise
@@ -110,7 +127,7 @@ export async function POST(request) {
         }
       }
       
-      console.log(`Added ${workoutExercises.length} exercises to workout`);
+      console.log(`Added ${workoutExercises.length} exercises to workout ${workout.id} with name "${name}"`);
     }
 
     // Fetch the complete workout with exercises

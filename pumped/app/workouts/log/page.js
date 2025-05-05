@@ -177,7 +177,7 @@ export default function LogWorkoutPage() {
       <DashboardLayout>
         <div className="flex items-center justify-center min-h-screen">
           <div className="animate-pulse text-center">
-            <p className="text-gray-400">Loading...</p>
+            <p className="text-[#4D8DAA]">Loading...</p>
           </div>
         </div>
       </DashboardLayout>
@@ -192,33 +192,34 @@ export default function LogWorkoutPage() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >
-          <h1 className="text-3xl font-bold mb-8">Log Your Workout</h1>
+          <h1 className="text-3xl font-bold mb-2 text-[#305C74]">Log Your Workout</h1>
+          <p className="text-gray-600 mb-8">Track your completed workouts and performance</p>
 
           {error && (
-            <div className="bg-gradient-to-r from-red-600/20 to-red-800/20 border border-red-500/30 text-red-100 px-4 py-3 rounded-xl mb-6">
+            <div className="bg-[#F4F8FB] border border-red-400 text-red-700 px-4 py-3 rounded-xl mb-6 shadow-md">
               {error}
             </div>
           )}
 
           {!selectedWorkout ? (
-            <div className="bg-gradient-to-r from-gray-800/50 to-gray-900/50 rounded-xl shadow-md p-6 mb-8 border border-gray-700">
-              <h2 className="text-xl font-semibold mb-4 text-white">Select a Recent Workout to Log</h2>
+            <div className="bg-white rounded-xl shadow-lg p-6 mb-8 border border-[#CDE0EA]">
+              <h2 className="text-xl font-semibold mb-4 text-[#3B728E]">Select a Recent Workout to Log</h2>
               
               {recentWorkouts.length > 0 ? (
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                   {recentWorkouts.map((workout) => (
                     <motion.div
                       key={workout.id}
-                      className="bg-gradient-to-r from-purple-600/20 to-purple-800/20 border border-purple-500/30 rounded-lg p-4 cursor-pointer hover:bg-purple-700/20 transition-colors"
+                      className="bg-[#F4F8FB] border border-[#CDE0EA] rounded-lg p-4 cursor-pointer hover:bg-[#E8F1F8] transition-colors shadow-sm"
                       whileHover={{ scale: 1.02 }}
                       onClick={() => handleQuickLog(workout)}
                     >
-                      <h3 className="font-medium text-lg mb-1">{workout.name}</h3>
-                      <p className="text-sm text-gray-400 mb-2">
+                      <h3 className="font-medium text-lg mb-1 text-[#305C74]">{workout.name}</h3>
+                      <p className="text-sm text-gray-600 mb-2">
                         {workout.exercises.length} exercises • {workout.duration} min
                       </p>
                       <div className="flex items-center space-x-1">
-                        <span className="text-xs bg-purple-600/30 text-purple-300 px-2 py-0.5 rounded">
+                        <span className="text-xs bg-[#4D8DAA]/20 text-[#305C74] px-2 py-0.5 rounded">
                           {workout.category || 'Workout'}
                         </span>
                       </div>
@@ -226,13 +227,13 @@ export default function LogWorkoutPage() {
                   ))}
                 </div>
               ) : (
-                <p className="text-gray-400">No recent workouts found. Create a workout first.</p>
+                <p className="text-gray-600">No recent workouts found. Create a workout first.</p>
               )}
               
               <div className="mt-6">
                 <button
                   onClick={() => router.push('/workouts/create')}
-                  className="px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors"
+                  className="px-4 py-2 bg-[#4D8DAA] text-white rounded-lg hover:bg-[#3B728E] transition-colors"
                 >
                   Create New Workout
                 </button>
@@ -240,12 +241,12 @@ export default function LogWorkoutPage() {
             </div>
           ) : (
             <form onSubmit={handleSubmit} className="space-y-8">
-              <div className="bg-gradient-to-r from-gray-800/50 to-gray-900/50 rounded-xl shadow-md p-6 border border-gray-700">
-                <h2 className="text-xl font-semibold mb-4 text-white">Workout Details</h2>
+              <div className="bg-white rounded-xl shadow-lg p-6 border border-[#CDE0EA]">
+                <h2 className="text-xl font-semibold mb-4 text-[#3B728E]">Workout Details</h2>
                 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
-                    <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-1">
+                    <label htmlFor="name" className="block text-sm font-medium text-gray-600 mb-1">
                       Workout Name
                     </label>
                     <input
@@ -254,13 +255,13 @@ export default function LogWorkoutPage() {
                       type="text"
                       value={workoutLog.name}
                       onChange={handleWorkoutChange}
-                      className="w-full px-4 py-2 bg-gray-800/80 border border-gray-700 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent text-white"
+                      className="w-full px-4 py-2 bg-[#F4F8FB] border border-[#CDE0EA] rounded-lg focus:ring-2 focus:ring-[#4D8DAA] focus:border-transparent text-gray-700"
                       readOnly
                     />
                   </div>
 
                   <div>
-                    <label htmlFor="date" className="block text-sm font-medium text-gray-300 mb-1">
+                    <label htmlFor="date" className="block text-sm font-medium text-gray-600 mb-1">
                       Date
                     </label>
                     <input
@@ -269,13 +270,13 @@ export default function LogWorkoutPage() {
                       type="date"
                       value={workoutLog.date}
                       onChange={handleWorkoutChange}
-                      className="w-full px-4 py-2 bg-gray-800/80 border border-gray-700 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent text-white"
+                      className="w-full px-4 py-2 bg-[#F4F8FB] border border-[#CDE0EA] rounded-lg focus:ring-2 focus:ring-[#4D8DAA] focus:border-transparent text-gray-700"
                     />
                   </div>
                 </div>
 
                 <div className="mt-6">
-                  <label htmlFor="notes" className="block text-sm font-medium text-gray-300 mb-1">
+                  <label htmlFor="notes" className="block text-sm font-medium text-gray-600 mb-1">
                     Notes
                   </label>
                   <textarea
@@ -284,34 +285,34 @@ export default function LogWorkoutPage() {
                     rows="2"
                     value={workoutLog.notes}
                     onChange={handleWorkoutChange}
-                    className="w-full px-4 py-2 bg-gray-800/80 border border-gray-700 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent text-white"
+                    className="w-full px-4 py-2 bg-[#F4F8FB] border border-[#CDE0EA] rounded-lg focus:ring-2 focus:ring-[#4D8DAA] focus:border-transparent text-gray-700"
                     placeholder="How was your workout? Any PRs or challenges?"
                   ></textarea>
                 </div>
               </div>
 
-              <div className="bg-gradient-to-r from-gray-800/50 to-gray-900/50 rounded-xl shadow-md p-6 border border-gray-700">
-                <h2 className="text-xl font-semibold mb-4 text-white">Exercises</h2>
+              <div className="bg-white rounded-xl shadow-lg p-6 border border-[#CDE0EA]">
+                <h2 className="text-xl font-semibold mb-4 text-[#3B728E]">Exercises</h2>
                 
                 <div className="space-y-6">
                   {workoutLog.exercises.map((exercise, index) => (
                     <div 
                       key={index}
-                      className={`p-4 border rounded-lg transition-colors ${
+                      className={`p-4 border rounded-lg transition-colors shadow-sm ${
                         exercise.isCompleted 
-                          ? 'border-green-500/50 bg-green-900/10' 
-                          : 'border-gray-700 bg-gray-800/30'
+                          ? 'border-green-500 bg-green-50' 
+                          : 'border-[#CDE0EA] bg-[#F4F8FB]'
                       }`}
                     >
                       <div className="flex justify-between items-center mb-3">
-                        <h3 className="font-medium text-lg">{exercise.name}</h3>
+                        <h3 className="font-medium text-lg text-[#305C74]">{exercise.name}</h3>
                         <button
                           type="button"
                           onClick={() => toggleExerciseCompletion(index)}
                           className={`px-3 py-1 rounded text-sm ${
                             exercise.isCompleted
                               ? 'bg-green-600 text-white'
-                              : 'bg-gray-700 text-gray-300'
+                              : 'bg-[#4D8DAA] text-white'
                           }`}
                         >
                           {exercise.isCompleted ? 'Completed' : 'Mark Complete'}
@@ -320,7 +321,7 @@ export default function LogWorkoutPage() {
                       
                       <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
                         <div>
-                          <label className="block text-xs font-medium text-gray-400 mb-1">
+                          <label className="block text-xs font-medium text-gray-500 mb-1">
                             Sets
                           </label>
                           <input
@@ -328,11 +329,11 @@ export default function LogWorkoutPage() {
                             min="1"
                             value={exercise.sets}
                             onChange={(e) => handleExerciseChange(index, 'sets', parseInt(e.target.value))}
-                            className="w-full px-3 py-1.5 bg-gray-800 border border-gray-700 rounded focus:ring-1 focus:ring-purple-500 text-white text-sm"
+                            className="w-full px-3 py-1.5 bg-white border border-[#CDE0EA] rounded focus:ring-1 focus:ring-[#4D8DAA] text-gray-700 text-sm"
                           />
                         </div>
                         <div>
-                          <label className="block text-xs font-medium text-gray-400 mb-1">
+                          <label className="block text-xs font-medium text-gray-500 mb-1">
                             Reps
                           </label>
                           <input
@@ -340,11 +341,11 @@ export default function LogWorkoutPage() {
                             min="1"
                             value={exercise.reps}
                             onChange={(e) => handleExerciseChange(index, 'reps', parseInt(e.target.value))}
-                            className="w-full px-3 py-1.5 bg-gray-800 border border-gray-700 rounded focus:ring-1 focus:ring-purple-500 text-white text-sm"
+                            className="w-full px-3 py-1.5 bg-white border border-[#CDE0EA] rounded focus:ring-1 focus:ring-[#4D8DAA] text-gray-700 text-sm"
                           />
                         </div>
                         <div>
-                          <label className="block text-xs font-medium text-gray-400 mb-1">
+                          <label className="block text-xs font-medium text-gray-500 mb-1">
                             Weight
                           </label>
                           <input
@@ -353,11 +354,11 @@ export default function LogWorkoutPage() {
                             min="0"
                             value={exercise.weight}
                             onChange={(e) => handleExerciseChange(index, 'weight', e.target.value)}
-                            className="w-full px-3 py-1.5 bg-gray-800 border border-gray-700 rounded focus:ring-1 focus:ring-purple-500 text-white text-sm"
+                            className="w-full px-3 py-1.5 bg-white border border-[#CDE0EA] rounded focus:ring-1 focus:ring-[#4D8DAA] text-gray-700 text-sm"
                           />
                         </div>
                         <div>
-                          <label className="block text-xs font-medium text-gray-400 mb-1">
+                          <label className="block text-xs font-medium text-gray-500 mb-1">
                             Rest (sec)
                           </label>
                           <input
@@ -366,13 +367,13 @@ export default function LogWorkoutPage() {
                             step="5"
                             value={exercise.restTime}
                             onChange={(e) => handleExerciseChange(index, 'restTime', parseInt(e.target.value))}
-                            className="w-full px-3 py-1.5 bg-gray-800 border border-gray-700 rounded focus:ring-1 focus:ring-purple-500 text-white text-sm"
+                            className="w-full px-3 py-1.5 bg-white border border-[#CDE0EA] rounded focus:ring-1 focus:ring-[#4D8DAA] text-gray-700 text-sm"
                           />
                         </div>
                       </div>
                       
                       <div className="mt-3">
-                        <label className="block text-xs font-medium text-gray-400 mb-1">
+                        <label className="block text-xs font-medium text-gray-500 mb-1">
                           Notes
                         </label>
                         <input
@@ -380,7 +381,7 @@ export default function LogWorkoutPage() {
                           value={exercise.notes || ''}
                           onChange={(e) => handleExerciseChange(index, 'notes', e.target.value)}
                           placeholder="How did it feel? Any PRs?"
-                          className="w-full px-3 py-1.5 bg-gray-800 border border-gray-700 rounded focus:ring-1 focus:ring-purple-500 text-white text-sm"
+                          className="w-full px-3 py-1.5 bg-white border border-[#CDE0EA] rounded focus:ring-1 focus:ring-[#4D8DAA] text-gray-700 text-sm"
                         />
                       </div>
                     </div>
@@ -392,13 +393,13 @@ export default function LogWorkoutPage() {
                 <button
                   type="button"
                   onClick={() => setSelectedWorkout(null)}
-                  className="px-4 py-2 bg-gray-700 text-white rounded-lg hover:bg-gray-600 transition-colors"
+                  className="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 transition-colors"
                 >
                   Back
                 </button>
                 <button
                   type="submit"
-                  className="px-6 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors"
+                  className="px-6 py-2 bg-[#4D8DAA] text-white rounded-lg hover:bg-[#3B728E] transition-colors"
                 >
                   Log Workout
                 </button>

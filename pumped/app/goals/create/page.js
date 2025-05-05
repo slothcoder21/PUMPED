@@ -93,7 +93,7 @@ export default function CreateGoalPage() {
                   min="0"
                   value={goalData.currentValue}
                   onChange={handleChange}
-                  className="w-full px-4 py-2 bg-gray-800/80 border border-gray-700 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent text-white"
+                  className="w-full px-4 py-2 bg-gray-800/80 border border-gray-700 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-white"
                 />
                 <span className="ml-2 text-gray-400">kg/lbs</span>
               </div>
@@ -111,7 +111,7 @@ export default function CreateGoalPage() {
                   min="0"
                   value={goalData.targetValue}
                   onChange={handleChange}
-                  className="w-full px-4 py-2 bg-gray-800/80 border border-gray-700 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent text-white"
+                  className="w-full px-4 py-2 bg-gray-800/80 border border-gray-700 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-white"
                 />
                 <span className="ml-2 text-gray-400">kg/lbs</span>
               </div>
@@ -132,7 +132,7 @@ export default function CreateGoalPage() {
                 value={goalData.metric}
                 onChange={handleChange}
                 placeholder="e.g., Bench Press, Squat, Deadlift"
-                className="w-full px-4 py-2 bg-gray-800/80 border border-gray-700 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent text-white"
+                className="w-full px-4 py-2 bg-gray-800/80 border border-gray-700 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-white"
               />
             </div>
             <div>
@@ -147,7 +147,7 @@ export default function CreateGoalPage() {
                   min="0"
                   value={goalData.currentValue}
                   onChange={handleChange}
-                  className="w-full px-4 py-2 bg-gray-800/80 border border-gray-700 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent text-white"
+                  className="w-full px-4 py-2 bg-gray-800/80 border border-gray-700 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-white"
                 />
                 <span className="ml-2 text-gray-400">kg/reps</span>
               </div>
@@ -164,7 +164,7 @@ export default function CreateGoalPage() {
                   min="0"
                   value={goalData.targetValue}
                   onChange={handleChange}
-                  className="w-full px-4 py-2 bg-gray-800/80 border border-gray-700 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent text-white"
+                  className="w-full px-4 py-2 bg-gray-800/80 border border-gray-700 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-white"
                 />
                 <span className="ml-2 text-gray-400">kg/reps</span>
               </div>
@@ -185,7 +185,7 @@ export default function CreateGoalPage() {
                 value={goalData.metric}
                 onChange={handleChange}
                 placeholder="e.g., Running, Cycling, Swimming"
-                className="w-full px-4 py-2 bg-gray-800/80 border border-gray-700 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent text-white"
+                className="w-full px-4 py-2 bg-gray-800/80 border border-gray-700 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-white"
               />
             </div>
             <div>
@@ -200,7 +200,7 @@ export default function CreateGoalPage() {
                   min="0"
                   value={goalData.currentValue}
                   onChange={handleChange}
-                  className="w-full px-4 py-2 bg-gray-800/80 border border-gray-700 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent text-white"
+                  className="w-full px-4 py-2 bg-gray-800/80 border border-gray-700 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-white"
                 />
                 <span className="ml-2 text-gray-400">km/min</span>
               </div>
@@ -217,7 +217,7 @@ export default function CreateGoalPage() {
                   min="0"
                   value={goalData.targetValue}
                   onChange={handleChange}
-                  className="w-full px-4 py-2 bg-gray-800/80 border border-gray-700 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent text-white"
+                  className="w-full px-4 py-2 bg-gray-800/80 border border-gray-700 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-white"
                 />
                 <span className="ml-2 text-gray-400">km/min</span>
               </div>
@@ -238,7 +238,7 @@ export default function CreateGoalPage() {
                 value={goalData.metric}
                 onChange={handleChange}
                 placeholder="e.g., Workout frequency, Water intake"
-                className="w-full px-4 py-2 bg-gray-800/80 border border-gray-700 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent text-white"
+                className="w-full px-4 py-2 bg-gray-800/80 border border-gray-700 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-white"
               />
             </div>
             <div>
@@ -253,7 +253,7 @@ export default function CreateGoalPage() {
                   min="0"
                   value={goalData.currentValue}
                   onChange={handleChange}
-                  className="w-full px-4 py-2 bg-gray-800/80 border border-gray-700 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent text-white"
+                  className="w-full px-4 py-2 bg-gray-800/80 border border-gray-700 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-white"
                 />
                 <span className="ml-2 text-gray-400">per week</span>
               </div>
@@ -270,7 +270,7 @@ export default function CreateGoalPage() {
                   min="0"
                   value={goalData.targetValue}
                   onChange={handleChange}
-                  className="w-full px-4 py-2 bg-gray-800/80 border border-gray-700 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent text-white"
+                  className="w-full px-4 py-2 bg-gray-800/80 border border-gray-700 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-white"
                 />
                 <span className="ml-2 text-gray-400">per week</span>
               </div>
@@ -291,7 +291,7 @@ export default function CreateGoalPage() {
                 value={goalData.metric}
                 onChange={handleChange}
                 placeholder="What will you measure?"
-                className="w-full px-4 py-2 bg-gray-800/80 border border-gray-700 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent text-white"
+                className="w-full px-4 py-2 bg-gray-800/80 border border-gray-700 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-white"
               />
             </div>
             <div>
@@ -305,7 +305,7 @@ export default function CreateGoalPage() {
                 min="0"
                 value={goalData.currentValue}
                 onChange={handleChange}
-                className="w-full px-4 py-2 bg-gray-800/80 border border-gray-700 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent text-white"
+                className="w-full px-4 py-2 bg-gray-800/80 border border-gray-700 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-white"
               />
             </div>
             <div>
@@ -319,7 +319,7 @@ export default function CreateGoalPage() {
                 min="0"
                 value={goalData.targetValue}
                 onChange={handleChange}
-                className="w-full px-4 py-2 bg-gray-800/80 border border-gray-700 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent text-white"
+                className="w-full px-4 py-2 bg-gray-800/80 border border-gray-700 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-white"
               />
             </div>
           </>
@@ -362,7 +362,7 @@ export default function CreateGoalPage() {
                     value={goalData.name}
                     onChange={handleChange}
                     placeholder="e.g., Lose 5kg, Bench press 100kg"
-                    className="w-full px-4 py-2 bg-gray-800/80 border border-gray-700 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent text-white"
+                    className="w-full px-4 py-2 bg-gray-800/80 border border-gray-700 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-white"
                   />
                 </div>
                 
@@ -375,7 +375,7 @@ export default function CreateGoalPage() {
                     name="type"
                     value={goalData.type}
                     onChange={handleChange}
-                    className="w-full px-4 py-2 bg-gray-800/80 border border-gray-700 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent text-white"
+                    className="w-full px-4 py-2 bg-gray-800/80 border border-gray-700 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-white"
                   >
                     <option value="WEIGHT">Weight</option>
                     <option value="STRENGTH">Strength</option>
@@ -397,7 +397,7 @@ export default function CreateGoalPage() {
                   value={goalData.description}
                   onChange={handleChange}
                   placeholder="Why is this goal important to you?"
-                  className="w-full px-4 py-2 bg-gray-800/80 border border-gray-700 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent text-white"
+                  className="w-full px-4 py-2 bg-gray-800/80 border border-gray-700 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-white"
                 ></textarea>
               </div>
               
@@ -415,7 +415,7 @@ export default function CreateGoalPage() {
                   type="date"
                   value={goalData.targetDate}
                   onChange={handleChange}
-                  className="w-full px-4 py-2 bg-gray-800/80 border border-gray-700 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent text-white"
+                  className="w-full px-4 py-2 bg-gray-800/80 border border-gray-700 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-white"
                 />
               </div>
               
@@ -423,7 +423,7 @@ export default function CreateGoalPage() {
                 <button
                   type="submit"
                   disabled={isLoading}
-                  className="px-6 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors"
+                  className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
                 >
                   {isLoading ? 'Creating...' : 'Create Goal'}
                 </button>

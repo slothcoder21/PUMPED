@@ -120,6 +120,15 @@ export const StatType: {
 
 export type StatType = (typeof StatType)[keyof typeof StatType]
 
+
+export const WorkoutStatus: {
+  PLANNED: 'PLANNED',
+  IN_PROGRESS: 'IN_PROGRESS',
+  COMPLETED: 'COMPLETED'
+};
+
+export type WorkoutStatus = (typeof WorkoutStatus)[keyof typeof WorkoutStatus]
+
 }
 
 export type GoalType = $Enums.GoalType
@@ -133,6 +142,10 @@ export const MeasurementType: typeof $Enums.MeasurementType
 export type StatType = $Enums.StatType
 
 export const StatType: typeof $Enums.StatType
+
+export type WorkoutStatus = $Enums.WorkoutStatus
+
+export const WorkoutStatus: typeof $Enums.WorkoutStatus
 
 /**
  * ##  Prisma Client ʲˢ
@@ -3603,6 +3616,8 @@ export namespace Prisma {
     duration: number | null
     notes: string | null
     isCompleted: boolean | null
+    status: $Enums.WorkoutStatus | null
+    startedAt: Date | null
     createdAt: Date | null
     updatedAt: Date | null
     userId: string | null
@@ -3616,6 +3631,8 @@ export namespace Prisma {
     duration: number | null
     notes: string | null
     isCompleted: boolean | null
+    status: $Enums.WorkoutStatus | null
+    startedAt: Date | null
     createdAt: Date | null
     updatedAt: Date | null
     userId: string | null
@@ -3629,6 +3646,8 @@ export namespace Prisma {
     duration: number
     notes: number
     isCompleted: number
+    status: number
+    startedAt: number
     createdAt: number
     updatedAt: number
     userId: number
@@ -3652,6 +3671,8 @@ export namespace Prisma {
     duration?: true
     notes?: true
     isCompleted?: true
+    status?: true
+    startedAt?: true
     createdAt?: true
     updatedAt?: true
     userId?: true
@@ -3665,6 +3686,8 @@ export namespace Prisma {
     duration?: true
     notes?: true
     isCompleted?: true
+    status?: true
+    startedAt?: true
     createdAt?: true
     updatedAt?: true
     userId?: true
@@ -3678,6 +3701,8 @@ export namespace Prisma {
     duration?: true
     notes?: true
     isCompleted?: true
+    status?: true
+    startedAt?: true
     createdAt?: true
     updatedAt?: true
     userId?: true
@@ -3778,6 +3803,8 @@ export namespace Prisma {
     duration: number | null
     notes: string | null
     isCompleted: boolean
+    status: $Enums.WorkoutStatus
+    startedAt: Date | null
     createdAt: Date
     updatedAt: Date
     userId: string
@@ -3810,6 +3837,8 @@ export namespace Prisma {
     duration?: boolean
     notes?: boolean
     isCompleted?: boolean
+    status?: boolean
+    startedAt?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     userId?: boolean
@@ -3826,6 +3855,8 @@ export namespace Prisma {
     duration?: boolean
     notes?: boolean
     isCompleted?: boolean
+    status?: boolean
+    startedAt?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     userId?: boolean
@@ -3840,6 +3871,8 @@ export namespace Prisma {
     duration?: boolean
     notes?: boolean
     isCompleted?: boolean
+    status?: boolean
+    startedAt?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     userId?: boolean
@@ -3854,13 +3887,15 @@ export namespace Prisma {
     duration?: boolean
     notes?: boolean
     isCompleted?: boolean
+    status?: boolean
+    startedAt?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     userId?: boolean
     category?: boolean
   }
 
-  export type WorkoutOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "date" | "duration" | "notes" | "isCompleted" | "createdAt" | "updatedAt" | "userId" | "category", ExtArgs["result"]["workout"]>
+  export type WorkoutOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "date" | "duration" | "notes" | "isCompleted" | "status" | "startedAt" | "createdAt" | "updatedAt" | "userId" | "category", ExtArgs["result"]["workout"]>
   export type WorkoutInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
     exercises?: boolean | Workout$exercisesArgs<ExtArgs>
@@ -3886,6 +3921,8 @@ export namespace Prisma {
       duration: number | null
       notes: string | null
       isCompleted: boolean
+      status: $Enums.WorkoutStatus
+      startedAt: Date | null
       createdAt: Date
       updatedAt: Date
       userId: string
@@ -4321,6 +4358,8 @@ export namespace Prisma {
     readonly duration: FieldRef<"Workout", 'Int'>
     readonly notes: FieldRef<"Workout", 'String'>
     readonly isCompleted: FieldRef<"Workout", 'Boolean'>
+    readonly status: FieldRef<"Workout", 'WorkoutStatus'>
+    readonly startedAt: FieldRef<"Workout", 'DateTime'>
     readonly createdAt: FieldRef<"Workout", 'DateTime'>
     readonly updatedAt: FieldRef<"Workout", 'DateTime'>
     readonly userId: FieldRef<"Workout", 'String'>
@@ -17353,6 +17392,8 @@ export namespace Prisma {
     duration: 'duration',
     notes: 'notes',
     isCompleted: 'isCompleted',
+    status: 'status',
+    startedAt: 'startedAt',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt',
     userId: 'userId',
@@ -17632,6 +17673,20 @@ export namespace Prisma {
 
 
   /**
+   * Reference to a field of type 'WorkoutStatus'
+   */
+  export type EnumWorkoutStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'WorkoutStatus'>
+    
+
+
+  /**
+   * Reference to a field of type 'WorkoutStatus[]'
+   */
+  export type ListEnumWorkoutStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'WorkoutStatus[]'>
+    
+
+
+  /**
    * Reference to a field of type 'GoalType'
    */
   export type EnumGoalTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'GoalType'>
@@ -17801,6 +17856,8 @@ export namespace Prisma {
     duration?: IntNullableFilter<"Workout"> | number | null
     notes?: StringNullableFilter<"Workout"> | string | null
     isCompleted?: BoolFilter<"Workout"> | boolean
+    status?: EnumWorkoutStatusFilter<"Workout"> | $Enums.WorkoutStatus
+    startedAt?: DateTimeNullableFilter<"Workout"> | Date | string | null
     createdAt?: DateTimeFilter<"Workout"> | Date | string
     updatedAt?: DateTimeFilter<"Workout"> | Date | string
     userId?: StringFilter<"Workout"> | string
@@ -17816,6 +17873,8 @@ export namespace Prisma {
     duration?: SortOrderInput | SortOrder
     notes?: SortOrderInput | SortOrder
     isCompleted?: SortOrder
+    status?: SortOrder
+    startedAt?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     userId?: SortOrder
@@ -17834,6 +17893,8 @@ export namespace Prisma {
     duration?: IntNullableFilter<"Workout"> | number | null
     notes?: StringNullableFilter<"Workout"> | string | null
     isCompleted?: BoolFilter<"Workout"> | boolean
+    status?: EnumWorkoutStatusFilter<"Workout"> | $Enums.WorkoutStatus
+    startedAt?: DateTimeNullableFilter<"Workout"> | Date | string | null
     createdAt?: DateTimeFilter<"Workout"> | Date | string
     updatedAt?: DateTimeFilter<"Workout"> | Date | string
     userId?: StringFilter<"Workout"> | string
@@ -17849,6 +17910,8 @@ export namespace Prisma {
     duration?: SortOrderInput | SortOrder
     notes?: SortOrderInput | SortOrder
     isCompleted?: SortOrder
+    status?: SortOrder
+    startedAt?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     userId?: SortOrder
@@ -17870,6 +17933,8 @@ export namespace Prisma {
     duration?: IntNullableWithAggregatesFilter<"Workout"> | number | null
     notes?: StringNullableWithAggregatesFilter<"Workout"> | string | null
     isCompleted?: BoolWithAggregatesFilter<"Workout"> | boolean
+    status?: EnumWorkoutStatusWithAggregatesFilter<"Workout"> | $Enums.WorkoutStatus
+    startedAt?: DateTimeNullableWithAggregatesFilter<"Workout"> | Date | string | null
     createdAt?: DateTimeWithAggregatesFilter<"Workout"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Workout"> | Date | string
     userId?: StringWithAggregatesFilter<"Workout"> | string
@@ -18831,6 +18896,8 @@ export namespace Prisma {
     duration?: number | null
     notes?: string | null
     isCompleted?: boolean
+    status?: $Enums.WorkoutStatus
+    startedAt?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     category?: string | null
@@ -18845,6 +18912,8 @@ export namespace Prisma {
     duration?: number | null
     notes?: string | null
     isCompleted?: boolean
+    status?: $Enums.WorkoutStatus
+    startedAt?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     userId: string
@@ -18859,6 +18928,8 @@ export namespace Prisma {
     duration?: NullableIntFieldUpdateOperationsInput | number | null
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     isCompleted?: BoolFieldUpdateOperationsInput | boolean
+    status?: EnumWorkoutStatusFieldUpdateOperationsInput | $Enums.WorkoutStatus
+    startedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     category?: NullableStringFieldUpdateOperationsInput | string | null
@@ -18873,6 +18944,8 @@ export namespace Prisma {
     duration?: NullableIntFieldUpdateOperationsInput | number | null
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     isCompleted?: BoolFieldUpdateOperationsInput | boolean
+    status?: EnumWorkoutStatusFieldUpdateOperationsInput | $Enums.WorkoutStatus
+    startedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     userId?: StringFieldUpdateOperationsInput | string
@@ -18887,6 +18960,8 @@ export namespace Prisma {
     duration?: number | null
     notes?: string | null
     isCompleted?: boolean
+    status?: $Enums.WorkoutStatus
+    startedAt?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     userId: string
@@ -18900,6 +18975,8 @@ export namespace Prisma {
     duration?: NullableIntFieldUpdateOperationsInput | number | null
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     isCompleted?: BoolFieldUpdateOperationsInput | boolean
+    status?: EnumWorkoutStatusFieldUpdateOperationsInput | $Enums.WorkoutStatus
+    startedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     category?: NullableStringFieldUpdateOperationsInput | string | null
@@ -18912,6 +18989,8 @@ export namespace Prisma {
     duration?: NullableIntFieldUpdateOperationsInput | number | null
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     isCompleted?: BoolFieldUpdateOperationsInput | boolean
+    status?: EnumWorkoutStatusFieldUpdateOperationsInput | $Enums.WorkoutStatus
+    startedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     userId?: StringFieldUpdateOperationsInput | string
@@ -20072,6 +20151,24 @@ export namespace Prisma {
     not?: NestedBoolFilter<$PrismaModel> | boolean
   }
 
+  export type EnumWorkoutStatusFilter<$PrismaModel = never> = {
+    equals?: $Enums.WorkoutStatus | EnumWorkoutStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.WorkoutStatus[] | ListEnumWorkoutStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.WorkoutStatus[] | ListEnumWorkoutStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumWorkoutStatusFilter<$PrismaModel> | $Enums.WorkoutStatus
+  }
+
+  export type DateTimeNullableFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
+  }
+
   export type UserScalarRelationFilter = {
     is?: UserWhereInput
     isNot?: UserWhereInput
@@ -20094,6 +20191,8 @@ export namespace Prisma {
     duration?: SortOrder
     notes?: SortOrder
     isCompleted?: SortOrder
+    status?: SortOrder
+    startedAt?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     userId?: SortOrder
@@ -20111,6 +20210,8 @@ export namespace Prisma {
     duration?: SortOrder
     notes?: SortOrder
     isCompleted?: SortOrder
+    status?: SortOrder
+    startedAt?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     userId?: SortOrder
@@ -20124,6 +20225,8 @@ export namespace Prisma {
     duration?: SortOrder
     notes?: SortOrder
     isCompleted?: SortOrder
+    status?: SortOrder
+    startedAt?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     userId?: SortOrder
@@ -20156,6 +20259,30 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedBoolFilter<$PrismaModel>
     _max?: NestedBoolFilter<$PrismaModel>
+  }
+
+  export type EnumWorkoutStatusWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.WorkoutStatus | EnumWorkoutStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.WorkoutStatus[] | ListEnumWorkoutStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.WorkoutStatus[] | ListEnumWorkoutStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumWorkoutStatusWithAggregatesFilter<$PrismaModel> | $Enums.WorkoutStatus
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumWorkoutStatusFilter<$PrismaModel>
+    _max?: NestedEnumWorkoutStatusFilter<$PrismaModel>
+  }
+
+  export type DateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableWithAggregatesFilter<$PrismaModel> | Date | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedDateTimeNullableFilter<$PrismaModel>
+    _max?: NestedDateTimeNullableFilter<$PrismaModel>
   }
 
   export type AIWorkoutExerciseListRelationFilter = {
@@ -20302,17 +20429,6 @@ export namespace Prisma {
     _max?: NestedIntFilter<$PrismaModel>
   }
 
-  export type DateTimeNullableFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
-  }
-
   export type EnumGoalTypeFilter<$PrismaModel = never> = {
     equals?: $Enums.GoalType | EnumGoalTypeFieldRefInput<$PrismaModel>
     in?: $Enums.GoalType[] | ListEnumGoalTypeFieldRefInput<$PrismaModel>
@@ -20373,20 +20489,6 @@ export namespace Prisma {
   export type GoalSumOrderByAggregateInput = {
     targetValue?: SortOrder
     currentValue?: SortOrder
-  }
-
-  export type DateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeNullableWithAggregatesFilter<$PrismaModel> | Date | string | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedDateTimeNullableFilter<$PrismaModel>
-    _max?: NestedDateTimeNullableFilter<$PrismaModel>
   }
 
   export type EnumGoalTypeWithAggregatesFilter<$PrismaModel = never> = {
@@ -21238,6 +21340,14 @@ export namespace Prisma {
     set?: boolean
   }
 
+  export type EnumWorkoutStatusFieldUpdateOperationsInput = {
+    set?: $Enums.WorkoutStatus
+  }
+
+  export type NullableDateTimeFieldUpdateOperationsInput = {
+    set?: Date | string | null
+  }
+
   export type UserUpdateOneRequiredWithoutWorkoutsNestedInput = {
     create?: XOR<UserCreateWithoutWorkoutsInput, UserUncheckedCreateWithoutWorkoutsInput>
     connectOrCreate?: UserCreateOrConnectWithoutWorkoutsInput
@@ -21398,10 +21508,6 @@ export namespace Prisma {
     create?: XOR<UserCreateWithoutGoalsInput, UserUncheckedCreateWithoutGoalsInput>
     connectOrCreate?: UserCreateOrConnectWithoutGoalsInput
     connect?: UserWhereUniqueInput
-  }
-
-  export type NullableDateTimeFieldUpdateOperationsInput = {
-    set?: Date | string | null
   }
 
   export type EnumGoalTypeFieldUpdateOperationsInput = {
@@ -21743,6 +21849,24 @@ export namespace Prisma {
     not?: NestedBoolFilter<$PrismaModel> | boolean
   }
 
+  export type NestedEnumWorkoutStatusFilter<$PrismaModel = never> = {
+    equals?: $Enums.WorkoutStatus | EnumWorkoutStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.WorkoutStatus[] | ListEnumWorkoutStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.WorkoutStatus[] | ListEnumWorkoutStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumWorkoutStatusFilter<$PrismaModel> | $Enums.WorkoutStatus
+  }
+
+  export type NestedDateTimeNullableFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
+  }
+
   export type NestedIntNullableWithAggregatesFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel> | null
     in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
@@ -21765,6 +21889,30 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedBoolFilter<$PrismaModel>
     _max?: NestedBoolFilter<$PrismaModel>
+  }
+
+  export type NestedEnumWorkoutStatusWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.WorkoutStatus | EnumWorkoutStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.WorkoutStatus[] | ListEnumWorkoutStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.WorkoutStatus[] | ListEnumWorkoutStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumWorkoutStatusWithAggregatesFilter<$PrismaModel> | $Enums.WorkoutStatus
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumWorkoutStatusFilter<$PrismaModel>
+    _max?: NestedEnumWorkoutStatusFilter<$PrismaModel>
+  }
+
+  export type NestedDateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableWithAggregatesFilter<$PrismaModel> | Date | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedDateTimeNullableFilter<$PrismaModel>
+    _max?: NestedDateTimeNullableFilter<$PrismaModel>
   }
 
   export type NestedIntWithAggregatesFilter<$PrismaModel = never> = {
@@ -21794,36 +21942,11 @@ export namespace Prisma {
     not?: NestedFloatFilter<$PrismaModel> | number
   }
 
-  export type NestedDateTimeNullableFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
-  }
-
   export type NestedEnumGoalTypeFilter<$PrismaModel = never> = {
     equals?: $Enums.GoalType | EnumGoalTypeFieldRefInput<$PrismaModel>
     in?: $Enums.GoalType[] | ListEnumGoalTypeFieldRefInput<$PrismaModel>
     notIn?: $Enums.GoalType[] | ListEnumGoalTypeFieldRefInput<$PrismaModel>
     not?: NestedEnumGoalTypeFilter<$PrismaModel> | $Enums.GoalType
-  }
-
-  export type NestedDateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeNullableWithAggregatesFilter<$PrismaModel> | Date | string | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedDateTimeNullableFilter<$PrismaModel>
-    _max?: NestedDateTimeNullableFilter<$PrismaModel>
   }
 
   export type NestedEnumGoalTypeWithAggregatesFilter<$PrismaModel = never> = {
@@ -21916,6 +22039,8 @@ export namespace Prisma {
     duration?: number | null
     notes?: string | null
     isCompleted?: boolean
+    status?: $Enums.WorkoutStatus
+    startedAt?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     category?: string | null
@@ -21929,6 +22054,8 @@ export namespace Prisma {
     duration?: number | null
     notes?: string | null
     isCompleted?: boolean
+    status?: $Enums.WorkoutStatus
+    startedAt?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     category?: string | null
@@ -22201,6 +22328,8 @@ export namespace Prisma {
     duration?: IntNullableFilter<"Workout"> | number | null
     notes?: StringNullableFilter<"Workout"> | string | null
     isCompleted?: BoolFilter<"Workout"> | boolean
+    status?: EnumWorkoutStatusFilter<"Workout"> | $Enums.WorkoutStatus
+    startedAt?: DateTimeNullableFilter<"Workout"> | Date | string | null
     createdAt?: DateTimeFilter<"Workout"> | Date | string
     updatedAt?: DateTimeFilter<"Workout"> | Date | string
     userId?: StringFilter<"Workout"> | string
@@ -22742,6 +22871,8 @@ export namespace Prisma {
     duration?: number | null
     notes?: string | null
     isCompleted?: boolean
+    status?: $Enums.WorkoutStatus
+    startedAt?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     category?: string | null
@@ -22755,6 +22886,8 @@ export namespace Prisma {
     duration?: number | null
     notes?: string | null
     isCompleted?: boolean
+    status?: $Enums.WorkoutStatus
+    startedAt?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     userId: string
@@ -22815,6 +22948,8 @@ export namespace Prisma {
     duration?: NullableIntFieldUpdateOperationsInput | number | null
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     isCompleted?: BoolFieldUpdateOperationsInput | boolean
+    status?: EnumWorkoutStatusFieldUpdateOperationsInput | $Enums.WorkoutStatus
+    startedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     category?: NullableStringFieldUpdateOperationsInput | string | null
@@ -22828,6 +22963,8 @@ export namespace Prisma {
     duration?: NullableIntFieldUpdateOperationsInput | number | null
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     isCompleted?: BoolFieldUpdateOperationsInput | boolean
+    status?: EnumWorkoutStatusFieldUpdateOperationsInput | $Enums.WorkoutStatus
+    startedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     userId?: StringFieldUpdateOperationsInput | string
@@ -23840,6 +23977,8 @@ export namespace Prisma {
     duration?: number | null
     notes?: string | null
     isCompleted?: boolean
+    status?: $Enums.WorkoutStatus
+    startedAt?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     category?: string | null
@@ -23912,6 +24051,8 @@ export namespace Prisma {
     duration?: NullableIntFieldUpdateOperationsInput | number | null
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     isCompleted?: BoolFieldUpdateOperationsInput | boolean
+    status?: EnumWorkoutStatusFieldUpdateOperationsInput | $Enums.WorkoutStatus
+    startedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     category?: NullableStringFieldUpdateOperationsInput | string | null
@@ -23925,6 +24066,8 @@ export namespace Prisma {
     duration?: NullableIntFieldUpdateOperationsInput | number | null
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     isCompleted?: BoolFieldUpdateOperationsInput | boolean
+    status?: EnumWorkoutStatusFieldUpdateOperationsInput | $Enums.WorkoutStatus
+    startedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     category?: NullableStringFieldUpdateOperationsInput | string | null
@@ -23938,6 +24081,8 @@ export namespace Prisma {
     duration?: NullableIntFieldUpdateOperationsInput | number | null
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     isCompleted?: BoolFieldUpdateOperationsInput | boolean
+    status?: EnumWorkoutStatusFieldUpdateOperationsInput | $Enums.WorkoutStatus
+    startedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     category?: NullableStringFieldUpdateOperationsInput | string | null

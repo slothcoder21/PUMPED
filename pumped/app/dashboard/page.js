@@ -203,14 +203,14 @@ export default function Dashboard() {
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
             <motion.div 
-              className="bg-gradient-to-r from-purple-600/20 to-purple-800/20 p-6 rounded-xl border border-purple-500/30"
+              className="bg-gradient-to-r from-blue-600/20 to-blue-800/20 p-6 rounded-xl border border-blue-500/30"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.1, duration: 0.5 }}
             >
-              <h3 className="text-gray-400 text-sm mb-1">Total Workouts</h3>
+              <h3 className="text-gray-800 text-sm mb-1">Total Workouts</h3>
               <p className="text-3xl font-bold">{stats.totalWorkouts}</p>
-              <p className="text-green-400 text-sm mt-2">Keep going strong!</p>
+              <p className="text-gray-800 text-sm mt-2">Keep going strong!</p>
             </motion.div>
             
             <motion.div 
@@ -219,7 +219,7 @@ export default function Dashboard() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2, duration: 0.5 }}
             >
-              <h3 className="text-gray-400 text-sm mb-1">Active Goals</h3>
+              <h3 className="text-gray-800 text-sm mb-1">Active Goals</h3>
               <p className="text-3xl font-bold">{stats.activeGoals}</p>
               <div className="w-full bg-gray-700 rounded-full h-1.5 mt-3">
                 <div className="bg-blue-500 h-1.5 rounded-full w-[65%]"></div>
@@ -227,14 +227,14 @@ export default function Dashboard() {
             </motion.div>
             
             <motion.div 
-              className="bg-gradient-to-r from-green-600/20 to-green-800/20 p-6 rounded-xl border border-green-500/30"
+              className="bg-gradient-to-r from-blue-600/20 to-blue-800/20 p-6 rounded-xl border border-blue-500/30"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3, duration: 0.5 }}
             >
-              <h3 className="text-gray-400 text-sm mb-1">This Week</h3>
+              <h3 className="text-gray-800 text-sm mb-1">This Week</h3>
               <p className="text-3xl font-bold">{stats.weeklyWorkouts.completed} / {stats.weeklyWorkouts.total}</p>
-              <p className="text-gray-400 text-sm mt-2">Workouts completed</p>
+              <p className="text-gray-800 text-sm mt-2">Workouts completed</p>
             </motion.div>
           </div>
           
@@ -244,7 +244,7 @@ export default function Dashboard() {
                 <h2 className="text-xl font-bold">Recent Workouts</h2>
                 <Link 
                   href="/workouts" 
-                  className="text-purple-400 hover:text-purple-300 text-sm flex items-center"
+                  className="text-blue-400 hover:text-blue-300 text-sm flex items-center"
                 >
                   View all
                   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-4 h-4 ml-1">
@@ -280,12 +280,12 @@ export default function Dashboard() {
                 
                 <Link href="/workouts/create" className="block">
                   <motion.div 
-                    className="p-4 border border-dashed border-gray-600 rounded-xl text-center hover:border-purple-500 hover:bg-slate-700/30 transition-colors cursor-pointer"
+                    className="p-4 border border-dashed border-gray-600 rounded-xl text-center hover:border-blue-500 hover:bg-slate-700/30 transition-colors cursor-pointer"
                     whileHover={{ scale: 1.01 }}
                     transition={{ type: "spring", stiffness: 400, damping: 10 }}
                   >
                     <p className="text-gray-400">
-                      <span className="text-purple-400">+</span> Create New Workout
+                      <span className="text-blue-400">+</span> Create New Workout
                     </p>
                   </motion.div>
                 </Link>
@@ -297,7 +297,7 @@ export default function Dashboard() {
                 <h2 className="text-xl font-bold">Goals Progress</h2>
                 <Link 
                   href="/goals" 
-                  className="text-purple-400 hover:text-purple-300 text-sm flex items-center"
+                  className="text-blue-400 hover:text-blue-300 text-sm flex items-center"
                 >
                   View all
                   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-4 h-4 ml-1">
@@ -331,12 +331,12 @@ export default function Dashboard() {
                 
                 <Link href="/goals/create" className="block">
                   <motion.div 
-                    className="p-4 border border-dashed border-gray-600 rounded-xl text-center hover:border-purple-500 hover:bg-slate-700/30 transition-colors cursor-pointer"
+                    className="p-4 border border-dashed border-gray-600 rounded-xl text-center hover:border-blue-500 hover:bg-slate-700/30 transition-colors cursor-pointer"
                     whileHover={{ scale: 1.01 }}
                     transition={{ type: "spring", stiffness: 400, damping: 10 }}
                   >
                     <p className="text-gray-400">
-                      <span className="text-purple-400">+</span> Create New Goal
+                      <span className="text-blue-400">+</span> Create New Goal
                     </p>
                   </motion.div>
                 </Link>
@@ -442,7 +442,7 @@ export default function Dashboard() {
                   </Link>
                   <Link
                     href={`/workouts/${selectedWorkout.id}/start`}
-                    className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-purple-600 hover:bg-purple-700"
+                    className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700"
                   >
                     Start Workout
                   </Link>
@@ -496,7 +496,7 @@ export default function Dashboard() {
                   <div className="w-full bg-gray-700 rounded-full h-2 mb-4">
                     <div 
                       className={`h-2 rounded-full ${
-                        selectedGoal.type === 'STRENGTH' ? 'bg-purple-500' :
+                        selectedGoal.type === 'STRENGTH' ? 'bg-blue-500' :
                         selectedGoal.type === 'WEIGHT' ? 'bg-blue-500' : 'bg-green-500'
                       }`}
                       style={{ width: `${calculateProgress(selectedGoal)}%` }}
@@ -538,7 +538,7 @@ export default function Dashboard() {
                   </Link>
                   <Link
                     href={`/goals/${selectedGoal.id}/update-progress`}
-                    className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-purple-600 hover:bg-purple-700"
+                    className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700"
                   >
                     Update Progress
                   </Link>

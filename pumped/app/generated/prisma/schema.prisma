@@ -37,14 +37,16 @@ model User {
 }
 
 model Workout {
-  id          String   @id @default(cuid())
+  id          String        @id @default(cuid())
   name        String
-  date        DateTime @default(now())
+  date        DateTime      @default(now())
   duration    Int? // in minutes
   notes       String?
-  isCompleted Boolean  @default(false)
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  isCompleted Boolean       @default(false)
+  status      WorkoutStatus @default(PLANNED)
+  startedAt   DateTime?
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
 
   userId    String
   user      User              @relation(fields: [userId], references: [id], onDelete: Cascade)
@@ -238,4 +240,10 @@ model WorkoutStreak {
 
   userId String @unique
   user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+enum WorkoutStatus {
+  PLANNED
+  IN_PROGRESS
+  COMPLETED
 }
