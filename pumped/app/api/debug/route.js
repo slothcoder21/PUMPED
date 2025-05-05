@@ -10,8 +10,7 @@ export async function GET() {
     const envInfo = {
       NODE_ENV: process.env.NODE_ENV || 'not set',
       NEXTAUTH_URL: process.env.NEXTAUTH_URL || 'not set',
-      DATABASE_URL_MASKED: process.env.DATABASE_URL ? 
-        `${process.env.DATABASE_URL.split('://')[0]}://****` : 'not set',
+      DATABASE_URL_MASKED: process.env.DATABASE_URL ? `${process.env.DATABASE_URL.split('://')[0]}://****` : 'not set',
       PRISMA_CLIENT_PATH: process.env.PRISMA_CLIENT_PATH || 'not set (using default)',
     };
     

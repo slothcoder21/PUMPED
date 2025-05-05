@@ -14,7 +14,7 @@ export async function GET() {
         user: {
           name: session.user?.name,
           email: session.user?.email,
-          // Don't send sensitive data
+          // Makes sure it doesn't send sensitive data
         }
       } : null,
       nextAuthUrl: process.env.NEXTAUTH_URL || 'not set',
