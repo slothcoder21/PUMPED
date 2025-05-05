@@ -200,7 +200,7 @@ export default function ProfilePage() {
                 </div>
                 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Weight (kg)</label>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">Weight (lbs)</label>
                   <input
                     type="number"
                     name="weight"
@@ -317,7 +317,7 @@ export default function ProfilePage() {
                     </div>
                     <div>
                       <h3 className="text-sm text-gray-500">Weight</h3>
-                      <p className="mt-1 text-gray-900">{formData.weight ? `${formData.weight} kg` : 'Not set'}</p>
+                      <p className="mt-1 text-gray-900">{formData.weight ? `${formData.weight} lbs` : 'Not set'}</p>
                     </div>
                   </div>
                 </div>
