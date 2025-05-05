@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import Image from 'next/image';
+
 export function Hero() {
   return (
     <section className="px-6 py-16 md:py-24">
