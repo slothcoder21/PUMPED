@@ -25,7 +25,6 @@ export default function Dashboard() {
   const [isLoading, setIsLoading] = useState(true);
   const router = useRouter();
   
-  // New state for modals and deletion
   const [showWorkoutModal, setShowWorkoutModal] = useState(false);
   const [showGoalModal, setShowGoalModal] = useState(false);
   const [selectedWorkout, setSelectedWorkout] = useState(null);
@@ -74,7 +73,6 @@ export default function Dashboard() {
     }
   }, [status, session]);
 
-  // Handlers for workout operations
   const handleViewWorkout = (workout) => {
     setSelectedWorkout(workout);
     setShowWorkoutModal(true);
@@ -96,7 +94,7 @@ export default function Dashboard() {
       if (response.ok) {
         setRecentWorkouts(recentWorkouts.filter(workout => workout.id !== workoutId));
         
-        // Update stats
+        // Update stats to new stats 
         setStats(prev => ({
           ...prev,
           totalWorkouts: Math.max(0, prev.totalWorkouts - 1)
